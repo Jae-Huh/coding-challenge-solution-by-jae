@@ -3,7 +3,20 @@ import React from 'react'
 import './TaskCardContainer.css'
 import TaskCard from '../TaskCard/TaskCard'
 
-const TaskCardContainer = () => {
+const TaskCardContainer = (props) => {
+
+  const renderTaskCards = () => {
+    return props.tasks.map(task => (
+      <TaskCard
+        title={task.name}
+        details={task.description}
+        dueDate={task.dueDate}
+      />
+    ))
+    console.log(props.tasks)
+  }
+
+
   return (
     <div className="task-cards-container">
       <div className="task-cards-header-container">
@@ -19,9 +32,7 @@ const TaskCardContainer = () => {
         </div>
       </div>
       <div>
-        <TaskCard />
-        <TaskCard />
-        <TaskCard />
+        {renderTaskCards()}
       </div>
     </div>
   )

@@ -9,18 +9,23 @@ import TaskCardContainer from '../../components/TaskCardContainer/TaskCardContai
 
 class DashboardPage extends React.Component {
   state = {
+    allTasks: data.tasks,
     tasks: data.tasks,
+    sectionTitle: '',
     overdue: 0,
     upcoming: 0,
     completed: 0,
-    sectionTitle: '',
     overdueTasks: [],
     upcomingTasks: [],
     completedTasks: [],
   }
 
-  componentWillMount () {
-    for (const task of this.state.tasks) {
+  componentDidMount () {
+    this.filterTasks()
+  }
+
+  filterTasks = () => {
+    for (const task of this.state.allTasks) {
       if (task.status === 1) {
         this.setState({
           completed: this.state.completed += 1,
@@ -40,8 +45,16 @@ class DashboardPage extends React.Component {
     }
   }
 
-  handleTaskCounterClick = () => {
+  handleOverdueClick = () => {
+    this.setState({ tasks: this.state.overdueTasks })
+  }
 
+  handleUpcomingClick = () => {
+    this.setState({ tasks: this.state.upcomingTasks })
+  }
+
+  handleCompletedClick = () => {
+    this.setState({ tasks: this.state.completedTasks })
   }
 
   render () {
@@ -53,25 +66,28 @@ class DashboardPage extends React.Component {
         </div>
         <div className="task-counters-container">
           <TaskCounter
-            name="overdue"
-            onClick = {this.handleTaskCounterClick}
+            onClick = {this.handleOverdueClick}
             taskCount={this.state.overdue}
             taskStatus="OVERDUE TASKS"
             style={{ color: 'rgb(135,200,100)' }}
           />
           <TaskCounter
+            onClick = {this.handleUpcomingClick}
             taskCount={this.state.upcoming}
             taskStatus="UPCOMING TASKS"
             style={{ color: 'rgb(62,151,214)' }}
           />
           <TaskCounter
+            onClick = {this.handleCompletedClick}
             taskCount={this.state.completed}
             taskStatus="COMPLETED TASKS"
             style={{ color: 'rgb(188,192,224)' }}
           />
         </div>
         <div>
-          <TaskCardContainer/>
+          <TaskCardContainer
+            tasks={this.state.tasks}
+          />
         </div>
       </div>
     )

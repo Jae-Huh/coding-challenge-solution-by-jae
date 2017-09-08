@@ -1,0 +1,24 @@
+.task-cards-container {
+    width: 100%;
+}
+
+.task-cards-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.task-cards-title-container {
+    display: flex;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.task-cards-label-container {
+    display: flex;
+    width: 50%;
+    box-sizing: border-box;
+    justify-content: space-around;
+    font-size: 12px;
+    font-weight: bold;
+}

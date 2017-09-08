@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import './TaskCounter.css'
 
@@ -9,6 +10,12 @@ const TaskCounter = (props) => {
       <p className="task-status">{props.taskStatus}</p>
     </div>
   )
+}
+
+TaskCounter.propTypes = {
+  onClick: PropTypes.func,
+  taskCount: PropTypes.number,
+  taskStatus: PropTypes.string,
 }
 
 export default TaskCounter

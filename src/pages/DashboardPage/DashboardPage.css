@@ -1,0 +1,37 @@
+.dashboard-page-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 30px 0;
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-title {
+    font-size: 32px;
+    font-weight: 100;
+    margin: 30px 0;
+}
+
+.add-new-task-button {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    border: none;
+    border-radius: 20px;
+    margin: 0 30px;
+    padding: 0 25px;
+    background-color: #4084DC;
+    color: #ffffff;
+    font-weight: bold;
+
+}
+
+.task-counters-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}

@@ -1,4 +1,4 @@
-{
+export const data = {
   "documents": [
     {
       "id": 1,

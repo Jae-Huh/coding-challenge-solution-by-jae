@@ -48,7 +48,7 @@ const AddNewTaskForm = (props) => {
         <p>DUE DATE</p>
         <DayPickerInput
           name="newDueDate"
-          placeholder="DD/MM/YYYY"
+          placeholder="YYYY-MM-DD"
           format='YYYY-MM-DD'
           value={props.newDueDate}
           onDayChange={props.handleDateChange}

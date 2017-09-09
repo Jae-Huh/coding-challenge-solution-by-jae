@@ -61,7 +61,8 @@
 }
 
 .task-card-details-container.show-task-card-details-container {
-    height: 300px;
+    height: 280px;
+    overflow: scroll;
     transition: height 1s;
 }
 

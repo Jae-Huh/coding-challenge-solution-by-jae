@@ -33,12 +33,7 @@ class DashboardPage extends React.Component {
     }
   }
 
-
   componentDidMount() {
-    this.filterTasks()
-  }
-
-  componentWillMount () {
     this.filterTasks()
   }
 
@@ -66,14 +61,34 @@ class DashboardPage extends React.Component {
         upcomingTasks.push(task)
       }
     }
+
+    let currentTasks = [...this.state.allTasks]
+
+    switch (this.state.currentTasksTitle) {
+      case 'Overdue Tasks':
+        currentTasks = this.state.overdueTasks
+        break
+      case 'Upcoming Tasks':
+        currentTasks = this.state.upcomingTasks
+        break
+      case 'Completed Tasks':
+        currentTasks = this.state.completedTasks
+        break
+      case 'All Tasks':
+        currentTasks = this.state.allTasks
+        break
+    }
+
     this.setState({
-      overdue: overdue,
-      upcoming: upcoming,
-      completed: completed,
-      overdueTasks: overdueTasks,
-      upcomingTasks: upcomingTasks,
-      completedTasks: completedTasks
+      tasks: currentTasks,
+      overdue,
+      upcoming,
+      completed,
+      overdueTasks,
+      upcomingTasks,
+      completedTasks
     })
+
   }
 
   handleOverdueClick = () => {
@@ -103,7 +118,7 @@ class DashboardPage extends React.Component {
   }
 
   handleDateChange = (selectedDate) => {
-    this.setState({ newDueDate: moment(selectedDate).format("DD/MM/YYYY")})
+    this.setState({ newDueDate: moment(selectedDate).format("YYYY-MM-DD")})
   }
 
   handleDocumentReferenceChange = (option) => {
@@ -120,16 +135,17 @@ class DashboardPage extends React.Component {
         name: this.state.newTitle,
         description: this.state.newDescription,
         documentId: this.findIds(this.state.newDocumentReference, this.state.documents),
-        dueDate: moment(this.state.newDueDate).format('YYYY-MM-DD'),
-        assingeeId: this.findIds(this.state.newAssignee, this.state.users),
-        status: 0
+        dueDate: this.state.newDueDate,
+        assigneeId: this.findIds(this.state.newAssignee, this.state.users),
+        status: 0,
+        id: this.state.allTasks.length + 1
       }],
       newTitle: '',
       newDescription: '',
       newDocumentReference: '',
       newDueDate:'',
       newAssignee: ''
-    })
+    }, this.filterTasks())
   }
 
   findIds = (name, list) => {
@@ -141,6 +157,7 @@ class DashboardPage extends React.Component {
   }
 
   render () {
+    console.log(this.state)
     return (
       <div className="dashboard-page-container">
         <div className="dashboard-header">

@@ -66,17 +66,16 @@ class DashboardPage extends React.Component {
 
     switch (this.state.currentTasksTitle) {
       case 'Overdue Tasks':
-        currentTasks = this.state.overdueTasks
+        currentTasks = tasksAndCounts.overdueTasks
         break
       case 'Upcoming Tasks':
-        currentTasks = this.state.upcomingTasks
+        currentTasks = tasksAndCounts.upcomingTasks
         break
       case 'Completed Tasks':
-        currentTasks = this.state.completedTasks
+        currentTasks = tasksAndCounts.completedTasks
         break
-      case 'All Tasks':
+      default:
         currentTasks = this.state.allTasks
-        break
     }
 
     this.setState({
@@ -130,22 +129,36 @@ class DashboardPage extends React.Component {
   }
 
   handleSubmitForm = () => {
+    const newTask = {
+      name: this.state.newTitle,
+      description: this.state.newDescription,
+      documentId: this.findIds(this.state.newDocumentReference, this.state.documents),
+      dueDate: this.state.newDueDate,
+      assigneeId: this.findIds(this.state.newAssignee, this.state.users),
+      status: 0,
+      id: this.state.allTasks.length + 1
+    }
+
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(newTask)
+    }).then(res => res.json()).then(json => console.log(json))
+
+
     this.setState({
-      allTasks: [...this.state.allTasks, {
-        name: this.state.newTitle,
-        description: this.state.newDescription,
-        documentId: this.findIds(this.state.newDocumentReference, this.state.documents),
-        dueDate: this.state.newDueDate,
-        assigneeId: this.findIds(this.state.newAssignee, this.state.users),
-        status: 0,
-        id: this.state.allTasks.length + 1
-      }],
+      allTasks: [...this.state.allTasks, newTask],
       newTitle: '',
       newDescription: '',
       newDocumentReference: '',
       newDueDate:'',
       newAssignee: ''
-    }, this.filterTasks())
+    }, this.filterTasks)
+
+    this.toggleAddForm()
+
   }
 
   findIds = (name, list) => {
@@ -157,7 +170,6 @@ class DashboardPage extends React.Component {
   }
 
   render () {
-    console.log(this.state)
     return (
       <div className="dashboard-page-container">
         <div className="dashboard-header">

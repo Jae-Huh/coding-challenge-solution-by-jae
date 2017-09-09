@@ -6,17 +6,34 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-top: 50px;
 }
 
 .task-cards-title-container {
     display: flex;
+    align-items: center;
     width: 50%;
     box-sizing: border-box;
+}
+
+.filter-button {
+    background-color: #ffffff;
+    color: #5897D0;
+    font-weight: bold;
+    border: 1px solid #AFBAC7;
+    border-radius: 20px;
+    height: 30px;
+    margin: 0 0 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100px;
 }
 
 .task-cards-label-container {
     display: flex;
     width: 50%;
+    padding-right: 80px;
     box-sizing: border-box;
     justify-content: space-around;
     font-size: 12px;

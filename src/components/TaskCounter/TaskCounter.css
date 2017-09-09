@@ -9,6 +9,10 @@
     background-color: #ffffff;
 }
 
+.task-counter-container:hover {
+    cursor: pointer;
+}
+
 .task-count {
     font-size: 40px;
     margin: 0;

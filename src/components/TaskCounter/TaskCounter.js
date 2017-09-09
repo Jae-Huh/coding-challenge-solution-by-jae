@@ -16,6 +16,7 @@ TaskCounter.propTypes = {
   onClick: PropTypes.func,
   taskCount: PropTypes.number,
   taskStatus: PropTypes.string,
+  style: PropTypes.object
 }
 
 export default TaskCounter

@@ -18,6 +18,10 @@
     margin: 30px 0;
 }
 
+.dashboard-title:hover {
+    cursor: pointer;
+}
+
 .add-new-task-button {
     display: flex;
     align-items: center;

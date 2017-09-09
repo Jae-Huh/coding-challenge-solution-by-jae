@@ -145,7 +145,9 @@ class DashboardPage extends React.Component {
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify(newTask)
-    }).then(res => res.json()).then(json => console.log(json))
+    })
+      .then(res => res.json())
+      .then(json => console.log(json))
 
 
     this.setState({
